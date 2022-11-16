@@ -1,0 +1,29 @@
+digraph STG {
+	rankdir=LR;
+	INIT [shape=point];
+	a [label="a"];
+	b [label="b"];
+	c [label="c"];
+	d [label="d"];
+	e [label="e"];
+	f [label="f"];
+	g [label="g"];
+	h [label="h"];
+	INIT -> a;
+	a -> a [label="0/0"];
+	a -> b [label="1/0"];
+	b -> h [label="0/1"];
+	b -> g [label="1/0"];
+	c -> d [label="0/1"];
+	c -> g [label="1/0"];
+	d -> e [label="0/1"];
+	d -> f [label="1/1"];
+	e -> e [label="0/1"];
+	e -> b [label="1/0"];
+	f -> e [label="0/0"];
+	f -> c [label="1/0"];
+	g -> a [label="0/0"];
+	g -> b [label="1/0"];
+	h -> e [label="0/1"];
+	h -> f [label="1/1"];
+}
