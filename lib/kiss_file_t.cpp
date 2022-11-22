@@ -21,16 +21,12 @@ void kiss_file_t::read_in(std::fstream& input) {
         } else if (prefix == ".r") {
             input >> this->init_state;
             for(int i = 0 ; i < part_cnt; i++) {
-                static bool output_tmp;
+                static string output_tmp;
                 static string nows_tmp, nexts_tmp;
                 static uint8_t tmp = 0;
-                vector<uint8_t> vec_input_tmp;
-                for(int j = 0 ; j < input_cnt ; j++){
-                    input >> tmp;
-                    vec_input_tmp.push_back(tmp);
-                }
-                input >> nows_tmp >> nexts_tmp >> output_tmp;
-                this->states.push_back(state_t(vec_input_tmp, nows_tmp, nexts_tmp, output_tmp));
+                static string input_tmp;
+                input >> input_tmp >> nows_tmp >> nexts_tmp >> output_tmp;
+                this->states.push_back(state_t(input_tmp, nows_tmp, nexts_tmp, output_tmp));
             }
         } else if(prefix == ".end_kiss"){
             break;
@@ -59,7 +55,7 @@ void kiss_file_t::write_out(std::fstream& ff) const {
         for(auto& j : i.input){
             ff << j;
         }
-        ff << " " << i.this_state + " " + i.next_state + " " << (i.output ? '1' : '0') << std::endl;
+        ff << " " << i.this_state + " " + i.next_state + " " << i.output << std::endl;
     }
     ff << ".end_kiss" << std::endl;
 }

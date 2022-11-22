@@ -15,7 +15,7 @@ using std::string;
 class dot_label_t{
 public:
     string this_state, next_state;
-    vector<std::pair<vector<uint8_t>, bool>> label;
+    vector<std::pair<string, string>> label;
 };
 
 class STG_dot_file_t{

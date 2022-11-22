@@ -10,12 +10,12 @@ using std::string;
 
 class state_t{
 public:
-    state_t(const vector<uint8_t>& input, const string &thisState, const string &nextState, const bool& output)
+    state_t(const string& input, const string &thisState, const string &nextState, const string& output)
     : input(input), output(output), this_state(thisState), next_state(nextState) {}
 
-    vector<uint8_t> input;
+    string input;
     string this_state, next_state;
-    bool output;
+    string output;
 
     bool operator> (const state_t& R_val);
     bool operator< (const state_t& R_val);

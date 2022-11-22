@@ -17,7 +17,7 @@ void STG_dot_file_t::input_from_kiss(const kiss_file_t & kiss_file) {
         dot_label_t dot_label;
         dot_label.this_state = i.this_state;
         dot_label.next_state = i.next_state;
-        std::pair<vector<uint8_t>, bool> tmp = std::make_pair(i.input, i.output);
+        std::pair<string, string> tmp = std::make_pair(i.input, i.output);
         dot_label.label.push_back(tmp);
         for(auto& j : this->labels){
             if(i.this_state == j.this_state && i.next_state == j.next_state){
@@ -55,7 +55,7 @@ void STG_dot_file_t::write_out(std::fstream & output) const {
             for(auto& m : j.first){
                 output << m;
             }
-            output << "/" << (j.second ? '1' : '0');
+            output << "/" << (j.second);
         }
         output << "\"];\n";
     }
